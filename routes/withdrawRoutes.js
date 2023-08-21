@@ -6,9 +6,9 @@ const {
 } = require("../middleware/verifyToken");
 
 // send withdraw
-router.post("/send", verifyToken, verifyTokenAndAdmin, sendWithdraw);
+router.post("/send", verifyToken, sendWithdraw);
 
-// send withdraw
+// get all withdraw for admin
 router.get("/", verifyToken, verifyTokenAndAdmin, getAllWithdrawForAdmin);
 
 // send money
