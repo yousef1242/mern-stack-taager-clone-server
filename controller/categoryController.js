@@ -30,7 +30,7 @@ const deleteCategory = asyncHandler(async (req, res) => {
   if (!category) {
     return res.status(500).json({ message: "هذه الفئة غير موجود " });
   }
-  await Category.findOneAndDelete(req.params.categoryId);
+  await Category.findByIdAndDelete(req.params.categoryId);
   res.status(200).json({ message: "تم ازالة الفئة بنجاح" });
 });
 

@@ -78,7 +78,7 @@ const deleteProduct = asyncHandler(async (req, res) => {
   if (!product) {
     return res.status(500).json({ message: "هذا المنتج غير موجود " });
   }
-  await Product.findOneAndDelete(req.params.productId);
+  await Product.findByIdAndDelete(req.params.productId);
   await Order.deleteMany({ "products.productId": product._id });
   await Cart.deleteMany({ productId: product._id });
   res.status(200).json({ message: "تم ازالة المنتج بنجاح" });
