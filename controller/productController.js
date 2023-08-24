@@ -46,9 +46,7 @@ const getAllProductsByCountry = asyncHandler(async (req, res) => {
 
 // get all products for admin
 const getAllProductsForAdmin = asyncHandler(async (req, res) => {
-  const products = await Product.find().sort({
-    createdAt: -1,
-  });
+  const products = await Product.find();
   res.status(200).json(products);
 });
 

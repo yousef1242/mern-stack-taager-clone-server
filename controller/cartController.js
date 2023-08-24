@@ -19,13 +19,17 @@ const addToCart = asyncHandler(async (req, res) => {
 
 // get all cart for user
 const getAllCartForUser = asyncHandler(async (req, res) => {
-  const { country } = req.query;
-  const cartObj = { userId: req.user.id };
-  if (country) {
-    cartObj.country = country;
+  try {
+    const { country } = req.query;
+    const cartObj = { userId: req.user.id };
+    if (country) {
+      cartObj.country = country;
+    }
+    const cart = await Cart.find(cartObj).populate("productId");
+    return res.status(200).json(cart);
+  } catch (error) {
+    console.log(error);
   }
-  const cart = await Cart.find(cartObj).populate("productId");
-  return res.status(200).json(cart);
 });
 
 // delete from cart
